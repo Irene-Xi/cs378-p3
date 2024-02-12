@@ -2,7 +2,6 @@ import './App.css';
 import MenuItem from './components/MenuItem';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
-import myLogo from './components/pandas_express.png';
 // Menu data. An array of objects where each object represents a menu item. Each menu item has an id, title, description, image name, and price.
 // You can use the image name to get the image from the images folder.
 const menuItems = [
@@ -82,7 +81,7 @@ const menuItems = [
 function App() {
   return (
     <div className="container menu-container">
-      <img src={myLogo} alt="Campus Cafe Logo" className="logo" />
+      <img src='images/pandas_express.png' alt="Campus Cafe Logo" className="logo" />
       <h1 className="title_h1">Delicious From-Scratch Recipes Close at Hand</h1>
       <h2 className="title_h2">The Fresh Choice of UT!</h2>
 
