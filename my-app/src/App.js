@@ -1,5 +1,6 @@
 import './App.css';
 import MenuItem from './components/MenuItem';
+import React, { useEffect, useState } from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
 // Menu data. An array of objects where each object represents a menu item. Each menu item has an id, title, description, image name, and price.
@@ -78,7 +79,34 @@ const menuItems = [
 ];
 
 
+
 function App() {
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+    setTotal(total + item.price);
+  };
+  const removeFromCart = (menuItem) => {
+    let itemIndex = cart.findIndex(item => item.id === menuItem.id);
+    let newCart = [...cart];
+    if(itemIndex > -1) {
+      newCart.splice(itemIndex, 1);
+      setCart(newCart);
+      setTotal(total - menuItem.price);
+    }
+  };
+  const clearCart = () => {
+    setCart([]);
+    setTotal(0);
+  };
+
+  const order = () => {
+    alert('Order placed! Your total is: $' + total.toFixed(2));
+  };
+
+  
   return (
     <div className="container menu-container">
       <img src='images/pandas_express.png' alt="Campus Cafe Logo" className="logo" />
@@ -92,8 +120,16 @@ function App() {
           description={item.description}
           imageName={item.imageName}
           price={item.price}
+          addToCart={() => addToCart(item)}
+          removeFromCart={() => removeFromCart(item)}
         />
       ))}
+      <div className="subtotal">
+        Subtotal: ${total.toFixed(2)}
+      </div>
+      <button onClick={() => order()}>Order</button>
+      <button onClick={clearCart}>Clear All</button>
+
     </div>
   );
 }
