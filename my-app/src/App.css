@@ -22,7 +22,7 @@ body {
 }
 
 .logo {
-  width: 90%; /* Adjust based on your actual logo size */
+  width: 90%; 
   margin-bottom: 10%;
   height: auto;
   border-radius: 5px;
