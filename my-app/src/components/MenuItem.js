@@ -9,7 +9,7 @@ const MenuItem = ({ title, description, imageName, price, addToCart, removeFromC
     
     return (
         <div className="row menu-item">
-            <div className="col-sm-4">
+            <div className="col-4">
                 <img src={`images/${imageName}`} alt={title} className="menu-image img-fluid"/>
             </div>
             <div className="col-sm-8">
