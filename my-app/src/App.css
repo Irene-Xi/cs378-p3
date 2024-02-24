@@ -141,7 +141,7 @@ body {
   }
 
   .menu-image {
-      width: 100%;
+      width: 50%;
   }
 
   .text-container {
@@ -150,6 +150,14 @@ body {
   
   .price, .title_h1, .logo {
       font-size: smaller; 
+  }
+
+  .quantity-btn {
+      padding: 5px 10px;
+  }
+
+  .quantity-wrapper {
+      padding: 5px 10px;
   }
 
   .add-btn {
