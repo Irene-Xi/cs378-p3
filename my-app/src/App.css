@@ -1,38 +1,172 @@
-.App {
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+.title_h1 {
+  font-family: cursive;
+  font-size: 25px; 
+  color: #f4a30e; 
+  font-weight: bold; 
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.title_h2 {
+  font-size: 40px;
+  color: #555;
+  font-weight: normal; 
+  margin-bottom: 10%; 
+}
+
+.logo {
+  width: 90%; /* Adjust based on your actual logo size */
+  margin-bottom: 10%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.menu-container {
   text-align: center;
+  background: #fff;
+  padding: 20px;
+  margin: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: start; /* Align items to the start of the container */
+  margin-bottom: 20px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  overflow: hidden; /* Prevents content from spilling out */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.menu-image {
+  flex-shrink: 0; /* Prevents the image from shrinking */
+  width: 90%; /* Fixed width for the image, adjust as needed */
+  /* height: 100px; */
+  border-radius: 5px;
+  margin-right: 5px;
+  /* padding-top: 90%; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.text-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: left;
+  flex-grow: 1; 
+}
+
+.menu-title {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+
+
+.menu-description {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.item-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.price {
+  text-align: left;
+  font-weight: bold;
+}
+
+.add-btn {
+  margin-left: auto; 
+  background-color: #a6ada6;
   color: white;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.App-link {
-  color: #61dafb;
+.quantity-wrapper {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.quantity-btn {
+  margin-left: auto; 
+  width: 30px; 
+  height: 30px; 
+  line-height: 3px;
+  border-radius: 50%; 
+  border: 0px solid #8aad92; 
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px; 
+  background-color: #8aad92; 
+  color: #000; 
+}
+
+
+.total-price-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; 
+  z-index: 1000;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); 
+}
+
+@media (max-width: 768px) {
+  .menu-item {
+      flex-wrap: nowrap; 
   }
-  to {
-    transform: rotate(360deg);
+
+  .menu-image {
+      width: 100%;
+  }
+
+  .text-container {
+      margin-left: 10px;
+  }
+  
+  .price, .title_h1, .logo {
+      font-size: smaller; 
+  }
+
+  .add-btn {
+      padding: 5px 10px;
+  }
+
+  .menu-description {
+      font-size: 0.8em;
+  }
+
+  .menu-title {
+      font-weight: bold;
+      font-size: 1em;
+  }
+
+  .title_h2 {
+      font-size: 20px;
   }
 }
+
