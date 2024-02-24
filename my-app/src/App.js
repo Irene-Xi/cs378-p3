@@ -83,11 +83,18 @@ const menuItems = [
 function App() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [itemQuantities, setItemQuantities] = useState({});
 
   const addToCart = (item) => {
     setCart([...cart, item]);
     setTotal(total + item.price);
+    setItemQuantities(prevQuantities => ({
+      ...prevQuantities,
+      [item.id]: (prevQuantities[item.id] || 0) + 1
+    }));
   };
+
+
   const removeFromCart = (menuItem) => {
     let itemIndex = cart.findIndex(item => item.id === menuItem.id);
     let newCart = [...cart];
@@ -95,15 +102,28 @@ function App() {
       newCart.splice(itemIndex, 1);
       setCart(newCart);
       setTotal(total - menuItem.price);
+      setItemQuantities(prevQuantities => ({
+        ...prevQuantities,
+        [menuItem.id]: Math.max(0, (prevQuantities[menuItem.id] || 1) - 1)
+      }));
     }
   };
   const clearCart = () => {
     setCart([]);
     setTotal(0);
+    setItemQuantities(0);
   };
 
   const order = () => {
-    alert('Order placed! Your total is: $' + total.toFixed(2));
+    let orderDetails = 'Order placed!\n\nYour order items:\n';
+    for (const [itemId, quantity] of Object.entries(itemQuantities)) {
+      if (quantity > 0) {
+        const item = menuItems.find(item => item.id === parseInt(itemId));
+        orderDetails += `${item.title}: Quantity ${quantity}\n`;
+      }
+    }
+    orderDetails += `\nYour total is: $${total.toFixed(2)}`;
+    alert(orderDetails);
   };
 
   
@@ -122,6 +142,7 @@ function App() {
           price={item.price}
           addToCart={() => addToCart(item)}
           removeFromCart={() => removeFromCart(item)}
+          quantity={itemQuantities[item.id] || 0}
         />
       ))}
       <div className="subtotal">
