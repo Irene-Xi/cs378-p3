@@ -1,8 +1,8 @@
 import './App.css';
 import MenuItem from './components/MenuItem';
+import React, { useEffect, useState } from "react";
 
-// import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
-
+import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
 // Menu data. An array of objects where each object represents a menu item. Each menu item has an id, title, description, image name, and price.
 // You can use the image name to get the image from the images folder.
 const menuItems = [
@@ -79,16 +79,82 @@ const menuItems = [
 ];
 
 
+
 function App() {
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [itemQuantities, setItemQuantities] = useState({});
+
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+    setTotal(total + item.price);
+    setItemQuantities(prevQuantities => ({
+      ...prevQuantities,
+      [item.id]: (prevQuantities[item.id] || 0) + 1
+    }));
+  };
+
+
+  const removeFromCart = (menuItem) => {
+    let itemIndex = cart.findIndex(item => item.id === menuItem.id);
+    let newCart = [...cart];
+    if(itemIndex > -1) {
+      newCart.splice(itemIndex, 1);
+      setCart(newCart);
+      setTotal(total - menuItem.price);
+      setItemQuantities(prevQuantities => ({
+        ...prevQuantities,
+        [menuItem.id]: Math.max(0, (prevQuantities[menuItem.id] || 1) - 1)
+      }));
+    }
+  };
+  const clearCart = () => {
+    setCart([]);
+    setTotal(0);
+    setItemQuantities(0);
+  };
+
+  const order = () => {
+    let orderDetails = 'Order placed!\n\nYour order items:\n';
+    for (const [itemId, quantity] of Object.entries(itemQuantities)) {
+      if (quantity > 0) {
+        const item = menuItems.find(item => item.id === parseInt(itemId));
+        orderDetails += `${item.title}: Quantity ${quantity}\n`;
+      }
+    }
+    orderDetails += `\nYour total is: $${total.toFixed(2)}`;
+    alert(orderDetails);
+  };
+
+  
   return (
-    <div>
-      <h1>Menu</h1>
-      <div className="menu">
-        {/* Display menu items dynamicaly here by iterating over the provided menuItems */}
-        <MenuItem title={menuItems[0].title} /> {/* Example for how to use a component */}
+    <div className="container menu-container">
+      <img src='images/pandas_express.png' alt="Campus Cafe Logo" className="logo" />
+      <h1 className="title_h1">Delicious From-Scratch Recipes Close at Hand</h1>
+      <h2 className="title_h2">The Fresh Choice of UT!</h2>
+
+      {menuItems.map(item => (
+        <MenuItem
+          key={item.id}
+          title={item.title}
+          description={item.description}
+          imageName={item.imageName}
+          price={item.price}
+          addToCart={() => addToCart(item)}
+          removeFromCart={() => removeFromCart(item)}
+          quantity={itemQuantities[item.id] || 0}
+        />
+      ))}
+      <div className="subtotal">
+        Subtotal: ${total.toFixed(2)}
       </div>
+      <button onClick={() => order()}>Order</button>
+      <button onClick={clearCart}>Clear All</button>
+
     </div>
   );
 }
+
+
 
 export default App;

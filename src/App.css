@@ -1,8 +1,158 @@
-/* 
-  Style your elements by creating CSS classes here.
-  Below, you can see an example of a class called "menu" that changes the color of the text to blue. Modify according to your needs.
-*/
-
-.menu {
-  color: blue;
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
 }
+
+.title_h1 {
+  font-family: cursive;
+  font-size: 25px; 
+  color: #f4a30e; 
+  font-weight: bold; 
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.title_h2 {
+  font-size: 40px;
+  color: #555;
+  font-weight: normal; 
+  margin-bottom: 10%; 
+}
+
+.logo {
+  width: 90%; /* Adjust based on your actual logo size */
+  margin-bottom: 10%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.menu-container {
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  margin: auto;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: start; /* Align items to the start of the container */
+  margin-bottom: 20px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  overflow: hidden; /* Prevents content from spilling out */
+}
+
+
+.menu-image {
+  flex-shrink: 0; /* Prevents the image from shrinking */
+  width: 90%; /* Fixed width for the image, adjust as needed */
+  /* height: 100px; */
+  border-radius: 5px;
+  margin-right: 5px;
+  /* padding-top: 90%; */
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  flex-grow: 1; /* Allows the container to grow to fill the space */
+}
+
+.menu-title {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+
+.menu-description {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.item-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  text-align: left;
+  font-weight: bold;
+}
+
+.add-btn {
+  margin-left: auto; 
+  background-color: #a6ada6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+  text-align: right;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.quantity-btn {
+  margin-left: auto; 
+  width: 30px; 
+  height: 30px; 
+  line-height: 30px;
+  border-radius: 50%; 
+  border: 1px solid #000; 
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px; 
+  background-color: #fff; 
+  color: #000; 
+}
+
+.quantity {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .menu-item {
+      flex-wrap: nowrap; 
+  }
+
+  .menu-image {
+      width: 100%;
+  }
+
+  .text-container {
+      margin-left: 10px;
+  }
+  
+  .price, .title_h1, .logo {
+      font-size: smaller; 
+  }
+
+  .add-btn {
+      padding: 5px 10px;
+  }
+
+  .menu-description {
+      font-size: 0.8em;
+  }
+
+  .menu-title {
+      font-weight: bold;
+      font-size: 1em;
+  }
+
+  .title_h2 {
+      font-size: 20px;
+  }
+}
+
