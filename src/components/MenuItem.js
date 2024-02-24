@@ -17,9 +17,11 @@ const MenuItem = ({ title, description, imageName, price, addToCart, removeFromC
                 <p className="menu-description">{description}</p>
                 <div className="item-action">
                     <span className="price">${price}</span>
-                    <button onClick={removeFromCart} className="quantity-btn">-</button>
-                    <span className="quantity">{quantity}</span>
-                    <button onClick={addToCart} className="quantity-btn">+</button>
+                    <div className="quantity-wrapper">
+                        <button onClick={removeFromCart} className="quantity-btn">-</button>
+                        <span className="quantity">{quantity}</span>
+                        <button onClick={addToCart} className="quantity-btn">+</button>
+                    </div>
                 </div>
             </div>
         </div>

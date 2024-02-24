@@ -145,12 +145,13 @@ function App() {
           quantity={itemQuantities[item.id] || 0}
         />
       ))}
-      <div className="subtotal">
-        Subtotal: ${total.toFixed(2)}
+      <div className='total-price-bar'>
+        <div className="subtotal">
+          Subtotal: ${total.toFixed(2)}
+        </div>
+        <button onClick={() => order()}>Order</button>
+        <button onClick={clearCart}>Clear All</button>
       </div>
-      <button onClick={() => order()}>Order</button>
-      <button onClick={clearCart}>Clear All</button>
-
     </div>
   );
 }
